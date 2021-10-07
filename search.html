@@ -18,22 +18,26 @@
         <h1>elasticSearch Client </h1>
 
     </div> 
-    <form method="POST" action="/search"class="form-inline my-2 my-lg-0" style="padding-left:40% ; padding-top: 2%; ">
+    <form method="POST" action="/" class="form-inline my-2 my-lg-0" style="padding-left:40% ; padding-top: 2%; ">
         <input name="tagToSearch" class="form-control mr-sm-2" type="search" placeholder="Search"
           aria-label="Search" >
-        <button class="btn btn-outline-success my-2 my-sm-0" onclick="onSearchClick()" type="submit">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" onclick="submit()" type="submit">Search</button>
       </form>
-    <div ng-controller="QueryController">
-      <div>
+     
+      <div ng-controller="QueryController">
+        <div>
           <table>
-              <tr  ng-repeat="item in resp.body.hits.hits">
-                  <td width="30%"> {{item['_source']['title']}} <br>{{item['_source']['tags'][0]}} </td>
-                  <td width="60%"><img src="http://farm{{item['_source']['flickr_farm']}}}.staticflickr.com/{{item['_source']['flickr_server']}}}/{{item['_source']['id']}}}_{{item['_source']['flickr_secret']}}}"> </td>
-              </tr>
+            <br>
+            Résultats de la recherche :
+
+            <tr  ng-repeat="item in hits">
+              <td width="30%"> {{item['_source']['title']}}<br>{{item['_source']['tags'][0]}} </td>
+              <td width="60%"><img src="http://farm{{item['_source']['flickr_farm']}}}.staticflickr.com/{{item['_source']['flickr_server']}}}/{{item['_source']['id']}}}_{{item['_source']['flickr_secret']}}}"> </td>
+            </tr>
           </table>
+        </div>
+        <br>
       </div>
-      <br>
-      Résultats de la recherche :
-  </div>
+    
 </body>
 </html>
